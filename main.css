@@ -1,0 +1,116 @@
+/* 
+  simple, flat, css-only notebook 
+    special features:
+      ~ responsive transformation into a tablet
+      ~ camera light
+      ~ glossy shine
+*/
+
+
+
+
+/* basic styling for this presentation */
+body {
+  font: 24px "PT Sans", sans-serif; 
+  text-align: center; 
+}
+h1 { font-weight: 400 }
+span { font-weight: 700 }
+p { color: #777 }
+
+
+/*  that whole thing in a div */
+.notebook {
+  font: 16px sans-serif;
+  display: block;
+  margin: 50px auto;
+}
+
+
+/* the screen - insert your images as its background */
+.notebook-screen {
+  position: relative; 
+  margin: 0 auto 6px auto;
+  width: 400px; 
+  height: 270px; 
+  background: url(url.jpg); 
+  background-size: cover; 
+  border-radius: 12px 12px 0 0; 
+  box-shadow: 0 6px 0 0 #111, 2px 6px 0 0 #ddd, 2px 0 0 0 #ddd, -2px 6px 0 0 #ddd, -2px 0 0 0 #ddd, 0 -2px 0 0 #ddd; 
+}
+
+/* this is the glossy effect on the screen, remove to make cam clickable for eye-candy */
+.notebook-screen:before {
+  content: ""; 
+  position: absolute; 
+  top: 0; 
+  right: 0; 
+  bottom: 0; 
+  left: 0; 
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(255, 255, 255, .05)), to(rgba(0, 0, 0, .1))), -webkit-gradient(linear, right top, left bottom, color-stop(0, rgba(255, 255, 255, 0)), color-stop(0.4, rgba(255, 255, 255, .1)), color-stop(0.401, transparent), color-stop(1, transparent)); 
+  background: -moz-linear-gradient(top, rgba(255,255,255,.05), rgba(0,0,0,.1)), -moz-linear-gradient(right top, rgba(255,255,255,0), rgba(255,255,255,.1) 40%, transparent 40%, transparent); 
+  background: linear-gradient(top, rgba(255,255,255,.05), rgba(0,0,0,.1)), linear-gradient(right top, transparent, rgba(255,255,255,.1) 40%, transparent 40%, transparent); 
+}
+
+/* its the black frame of the notebook-screen */
+.notebook-frame {
+  width: 400px; 
+  height: 270px; 
+  border-radius: 12px 12px 0 0; 
+  box-shadow: inset 0 0 0 20px #222; 
+}
+
+/* its the the place where your notebook's wrapped heart pulsates */
+.notebook-body {
+  display: block;
+  margin: 0 auto;
+  background: #ccc; 
+  width: 550px; 
+  height: 12px; 
+  border-bottom: 7px solid #bbb; 
+  border-radius: 1px 1px 27% 27%; 
+}
+
+
+/* here is your build-in webcam */
+.notebook-cam span {
+  text-align: center; 
+  color: #000; 
+  text-shadow: 0 0 1px rgba(255,255,255,.3), 0 0 2px rgba(0,0,0,.9); 
+  cursor: pointer; 
+}
+
+/* "turn camera on"-effect, when glossy-effect in .css is removed */
+.notebook-cam span:active {
+  text-align: center; 
+  color: #49B9C5; 
+  text-shadow: 0 0 1px rgba(4,48,57,.3), 0 0 2px rgba(0,0,0,.9), 0 0 15px rgba(255,255,255,.9); 
+}
+
+/* its that gap where you put your fingers to open the screen */
+.notebook-gap {
+  margin: auto; 
+  width: 50px; 
+  height: 7px; 
+  background: #b9b9b9; 
+  border-radius: 0 0 10px 10px; 
+  box-shadow: inset 0 -1px 0 rgba(255,255,255,.5), inset 0 0 4px rgba(0,0,0,.1); 
+}
+
+/* transform notebook to tablet when screen-size is < 768px */
+
+@media screen and (max-width: 768px) {
+  .notebook-body, .notebook-gap, .notebook-brand  { 
+    display: none;
+  }
+  .notebook-frame, .notebook-screen {
+    width: 300px; 
+    height: 220px; 
+    border-radius: 12px; 
+  }
+  .notebook-screen { 
+    border-radius: 50px; 
+    box-shadow: 0 0 0 
+  }
+  .notebook-screen:before { border-radius: 12px;  }
+}
